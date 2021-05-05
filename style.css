@@ -1,0 +1,19 @@
+.heading{
+    background-color: #337ab7;
+}
+
+.text-white{
+    color:#fff;
+}
+
+.border{
+    border: 1px solid black;
+}
+
+form{
+    padding:10px;
+}
+
+span{
+    color:red;
+}

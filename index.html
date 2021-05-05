@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>Authentication</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3 border">
+                    <div class="row text-center heading">
+                        <h3 class="text-white">Login</h3>
+                    </div>
+                    <div class="row">
+                        <form method="post" action="" onsubmit="return check();">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" name="username" class="form-control">
+                                <span id="username_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="password" class="form-control">
+                                <span id="password_error"></span>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" name="submit" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            function check(){
+                var errors = 0;
+                var passwordRegExp = /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i;
+
+                var elementUsername = document.getElementsByName("username")[0];
+                var elementPassword = document.getElementsByName("password")[0];
+                document.getElementById("username_error").innerText = "";
+                document.getElementById("password_error").innerText = "";
+
+                elementUsername.style.borderColor = "";
+                elementPassword.style.borderColor = "";
+
+                if( elementUsername.value.trim() === "" ){
+                    elementUsername.style.borderColor = "red";
+                    document.getElementById("username_error").innerText = "Enter Username!";
+                    errors++;
+                }
+
+                if( elementPassword.value.trim() === "" ){
+                    elementPassword.style.borderColor = "red";
+                    document.getElementById("password_error").innerText = "Enter Password!";
+                    errors++;
+                } else if ( elementPassword.value.length < 8 ){
+                    elementPassword.style.borderColor = "red";
+                    document.getElementById("password_error").innerText = "Password must be greater than 8 characters!";
+                    errors++;
+                } else if( !elementPassword.value.match(passwordRegExp)){
+                    elementPassword.style.borderColor = "red";
+                    document.getElementById("password_error").innerText = "Password must have atleast number and one alphabet";
+                    errors++;
+                }
+
+                if( errors > 0 ){
+                    return false;
+                } else {
+                    alert("Success");
+                    return true;
+                }
+
+            }
+        </script>
+    </body>
+</html>
